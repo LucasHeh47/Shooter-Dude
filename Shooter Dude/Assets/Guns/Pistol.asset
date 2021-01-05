@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11dff2565ac5ef4fa80ad6680af3451, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  GunImage: {fileID: 21300000, guid: 9f25aa35c8cb4a44ab86ab800bb15112, type: 3}
+  GunImageInvView: {fileID: 21300000, guid: 4572dee9d16640f4d8976bddd3460d52, type: 3}
+  ProjectileImage: {fileID: 21300000, guid: ae200aeef448ff845a9bbf5a211621a2, type: 3}
+  GunName: Pistol
+  DefaultGun: 1
+  BulletSpeed: 25
+  ReloadTime: 3
+  ClipSize: 10
+  AmmoInClip: 9
+  Ammo: 20
+  CurrentAmmo: 10
+  Rarity: 0
+  CommonDamage: 10
+  CommonFireRate: 1.2
+  CommonRange: 5
+  UnCommonDamage: 17.5
+  UnCommonFireRate: 1.125
+  UnCommonRange: 5.5
+  RareDamage: 25
+  RareFireRate: 1.05
+  RareRange: 6
+  EpicDamage: 32.5
+  EpicFireRate: 0.9
+  EpicRange: 6.25
+  LegendaryDamage: 50
+  LegendaryFireRate: 0.75
+  LegendaryRange: 6.5

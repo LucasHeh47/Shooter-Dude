@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New Enemy", menuName = "Enemy")]
+[CreateAssetMenu(fileName = "New Gun", menuName = "Gun")]
 public class Gun : ScriptableObject
 {
 
     public Sprite GunImage;
+    public Sprite GunImageInvView;
+    public Sprite ProjectileImage;
     public string GunName;
+    public bool DefaultGun = false;
+    public float BulletSpeed;
+    public float ReloadTime;
+    public int ClipSize;
+    public int AmmoInClip;
+    public int Ammo;
+    public int CurrentAmmo;
+
+    public GunManager.RarityTypes Rarity;
 
     // COMMON
     public float CommonDamage;

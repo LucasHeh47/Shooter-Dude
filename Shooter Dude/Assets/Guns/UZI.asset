@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11dff2565ac5ef4fa80ad6680af3451, type: 3}
+  m_Name: UZI
+  m_EditorClassIdentifier: 
+  GunImage: {fileID: 21300000, guid: cdd0db18e654a454d9d4bf6f8f8cd803, type: 3}
+  GunImageInvView: {fileID: 21300000, guid: e9ce450b89054f34cb6d3554139876d5, type: 3}
+  ProjectileImage: {fileID: 21300000, guid: 005f2431c20ff90448d450077dd0b23d, type: 3}
+  GunName: UZI
+  DefaultGun: 0
+  BulletSpeed: 17.5
+  ReloadTime: 2
+  ClipSize: 32
+  AmmoInClip: 29
+  Ammo: 224
+  CurrentAmmo: 224
+  Rarity: 0
+  CommonDamage: 5
+  CommonFireRate: 0.2
+  CommonRange: 3
+  UnCommonDamage: 10
+  UnCommonFireRate: 0.175
+  UnCommonRange: 3.2
+  RareDamage: 15
+  RareFireRate: 0.15
+  RareRange: 3.4
+  EpicDamage: 20
+  EpicFireRate: 0.125
+  EpicRange: 3.6
+  LegendaryDamage: 25
+  LegendaryFireRate: 0.1
+  LegendaryRange: 4

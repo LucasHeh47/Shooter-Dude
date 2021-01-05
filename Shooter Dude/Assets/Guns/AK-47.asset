@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11dff2565ac5ef4fa80ad6680af3451, type: 3}
+  m_Name: AK-47
+  m_EditorClassIdentifier: 
+  GunImage: {fileID: 21300000, guid: 8dec629c8b8c83d4d8b5b514c53924d4, type: 3}
+  GunImageInvView: {fileID: 21300000, guid: 002d7484c4a40e0469088ce68be268ab, type: 3}
+  ProjectileImage: {fileID: 21300000, guid: 25de789c09c64b348a1b6c5f1f3aeecb, type: 3}
+  GunName: AK-47
+  DefaultGun: 0
+  BulletSpeed: 20
+  ReloadTime: 2
+  ClipSize: 30
+  AmmoInClip: 30
+  Ammo: 210
+  CurrentAmmo: 210
+  Rarity: 0
+  CommonDamage: 30
+  CommonFireRate: 0.6
+  CommonRange: 5
+  UnCommonDamage: 42.5
+  UnCommonFireRate: 0.5
+  UnCommonRange: 5.5
+  RareDamage: 55
+  RareFireRate: 0.45
+  RareRange: 6
+  EpicDamage: 67.5
+  EpicFireRate: 0.4
+  EpicRange: 6.5
+  LegendaryDamage: 75
+  LegendaryFireRate: 0.35
+  LegendaryRange: 7

@@ -23,6 +23,13 @@ public class PlayerRotation : MonoBehaviour
         transform.right = diff;
 
         //tweak this part inside the if or in the flipX / flipY because i'm not sure of the values
-        gun.GetComponent<SpriteRenderer>().flipY = diff.y <= 0; //flipY may have parztheses i dont remember :/
+        if(diff.x <= 0)
+        {
+            gun.GetComponent<SpriteRenderer>().flipY = true;
+        }
+        else
+        {
+            gun.GetComponent<SpriteRenderer>().flipY = false;
+        }
     }
 }
