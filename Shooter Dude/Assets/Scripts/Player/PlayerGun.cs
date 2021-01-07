@@ -8,6 +8,7 @@ public class PlayerGun : MonoBehaviour
 {
 
     public static PlayerGun Instance;
+    public GunManager manager;
 
     public Gun DefaultGun;
 
@@ -31,6 +32,8 @@ public class PlayerGun : MonoBehaviour
     public GameObject bullet;
     public Transform bulletSpawn;
 
+    public float ReloadSpeed = 1.00f;
+
     // SHOOTING
     private float nextTime;
     private float delay;
@@ -47,11 +50,12 @@ public class PlayerGun : MonoBehaviour
         Equipped[0] = DefaultGun;
         WeaponHolding = Equipped[CurrentWeapon];
         Instance = this;
+        SetGunsToCommon();
         ChangeInv();
         delay = GetFireRate(WeaponHolding);
         ReloadTime = WeaponHolding.ReloadTime;
 
-        ReloadGunsCompletely();
+        ReloadAllGunsCompletely();
         AmmoText.SetText(WeaponHolding.AmmoInClip.ToString() + "/" + WeaponHolding.CurrentAmmo.ToString());
     }
 
@@ -89,20 +93,35 @@ public class PlayerGun : MonoBehaviour
     {
         if (Equipped[0] != null)
         {
-            Inv1Background.GetComponent<Image>().color = GunManager.Instance.GetColor(Equipped[0].Rarity);
+            Inv1Background.GetComponent<Image>().color = manager.GetColor(Equipped[0].Rarity);
         }
         else
         {
-            Inv1Background.GetComponent<Image>().color = GunManager.Instance.NoColor;
+            Inv1Background.GetComponent<Image>().color = manager.NoColor;
         }
         if (Equipped[1] != null)
         {
-            Inv2Background.GetComponent<Image>().color = GunManager.Instance.GetColor(Equipped[1].Rarity);
+            Inv2Background.GetComponent<Image>().color = manager.GetColor(Equipped[1].Rarity);
         }
         else
         {
-            Inv2Background.GetComponent<Image>().color = GunManager.Instance.NoColor;
+            Inv2Background.GetComponent<Image>().color = manager.NoColor;
         }
+    }
+
+    void SetGunsToCommon()
+    {
+        for(int i = 0; i < manager.AllGuns.Length; i++)
+        {
+            manager.AllGuns[i].Rarity = GunManager.RarityTypes.Common;
+        }
+    }
+
+    void ReloadGun(Gun gun)
+    {
+        gun.CurrentAmmo = gun.Ammo;
+        gun.AmmoInClip = gun.ClipSize;
+        AmmoText.SetText(WeaponHolding.AmmoInClip.ToString() + "/" + WeaponHolding.CurrentAmmo.ToString());
     }
 
     void ReloadGunsCompletely()
@@ -111,6 +130,17 @@ public class PlayerGun : MonoBehaviour
         if (Equipped[1] != null) Equipped[1].CurrentAmmo = Equipped[1].Ammo;
         if (Equipped[0] != null) Equipped[0].AmmoInClip = Equipped[0].ClipSize;
         if (Equipped[1] != null) Equipped[1].AmmoInClip = Equipped[1].ClipSize;
+        AmmoText.SetText(WeaponHolding.AmmoInClip.ToString() + "/" + WeaponHolding.CurrentAmmo.ToString());
+    }
+
+    void ReloadAllGunsCompletely()
+    {
+        for (int i = 0; i < manager.AllGuns.Length; i++)
+        {
+            manager.AllGuns[i].CurrentAmmo = manager.AllGuns[i].Ammo;
+            manager.AllGuns[i].AmmoInClip = manager.AllGuns[i].ClipSize;
+        }
+        AmmoText.SetText(WeaponHolding.AmmoInClip.ToString() + "/" + WeaponHolding.CurrentAmmo.ToString());
     }
 
     void Update()
@@ -162,7 +192,7 @@ public class PlayerGun : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && Time.time >= nextTime && !isReloading && WeaponHolding.AmmoInClip > 0)
+        if (Input.GetMouseButton(0) && Time.time >= nextTime && !isReloading && WeaponHolding.AmmoInClip > 0 && !PlayerInteract.Instance.shop.gameObject.activeSelf)
         {
             Shoot();
         }
@@ -188,7 +218,7 @@ public class PlayerGun : MonoBehaviour
         isReloading = true;
         reloadingText.SetText("Reloading...");
 
-        yield return new WaitForSeconds(ReloadTime);
+        yield return new WaitForSeconds(ReloadTime/ReloadSpeed);
         int ammoReloaded = WeaponHolding.ClipSize - WeaponHolding.AmmoInClip;
 
         reloadingText.SetText(" ");
@@ -224,6 +254,21 @@ public class PlayerGun : MonoBehaviour
         AmmoText.SetText(WeaponHolding.AmmoInClip.ToString() + "/" + WeaponHolding.CurrentAmmo.ToString());
         delay = GetFireRate(WeaponHolding);
         ReloadTime = WeaponHolding.ReloadTime;
+    }
+
+    public bool DoesHaveGun(Gun gun)
+    {
+        if(Equipped[0] == gun)
+        {
+            return true;
+        } else if(Equipped[1] == gun)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public float GetDamage(Gun gun)
@@ -298,6 +343,56 @@ public class PlayerGun : MonoBehaviour
             return gun.LegendaryRange;
         }
         return 0;
+    }
+
+    public void UpgradeGunRarity(Gun gun)
+    {
+        if (gun.Rarity == GunManager.RarityTypes.Common)
+        {
+            gun.Rarity = GunManager.RarityTypes.UnCommon;
+            ChangeInv();
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.UnCommon)
+        {
+            gun.Rarity = GunManager.RarityTypes.Rare;
+            ChangeInv();
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.Rare)
+        {
+            gun.Rarity = GunManager.RarityTypes.Epic;
+            ChangeInv();
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.Epic)
+        {
+            gun.Rarity = GunManager.RarityTypes.Legendary;
+            ChangeInv();
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.Legendary)
+        {
+            return;
+        }
+        ReloadGun(gun);
+    }
+
+    public float GetUpgradeCost(Gun gun)
+    {
+        if (gun.Rarity == GunManager.RarityTypes.Common)
+        {
+            return gun.CommonToUnCommonCost;
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.UnCommon)
+        {
+            return gun.UnCommonToRareCost;
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.Rare)
+        {
+            return gun.RareToEpicCost;
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.Epic)
+        {
+            return gun.EpicToLegendaryCost;
+        }
+        return 58353;
     }
 
 }

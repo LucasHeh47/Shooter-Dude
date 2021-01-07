@@ -7,6 +7,7 @@ using UnityEngine;
 public class Gun : ScriptableObject
 {
 
+    public float Price;
     public Sprite GunImage;
     public Sprite GunImageInvView;
     public Sprite ProjectileImage;
@@ -45,5 +46,10 @@ public class Gun : ScriptableObject
     public float LegendaryDamage;
     public float LegendaryFireRate;
     public float LegendaryRange;
+
+    public float CommonToUnCommonCost;
+    public float UnCommonToRareCost;
+    public float RareToEpicCost;
+    public float EpicToLegendaryCost;
 
 }

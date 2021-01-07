@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11dff2565ac5ef4fa80ad6680af3451, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  Price: 100
   GunImage: {fileID: 21300000, guid: 9f25aa35c8cb4a44ab86ab800bb15112, type: 3}
   GunImageInvView: {fileID: 21300000, guid: 4572dee9d16640f4d8976bddd3460d52, type: 3}
   ProjectileImage: {fileID: 21300000, guid: ae200aeef448ff845a9bbf5a211621a2, type: 3}
@@ -20,10 +21,10 @@ MonoBehaviour:
   BulletSpeed: 25
   ReloadTime: 3
   ClipSize: 10
-  AmmoInClip: 9
+  AmmoInClip: 10
   Ammo: 20
-  CurrentAmmo: 10
-  Rarity: 0
+  CurrentAmmo: 20
+  Rarity: 4
   CommonDamage: 10
   CommonFireRate: 1.2
   CommonRange: 5
@@ -39,3 +40,7 @@ MonoBehaviour:
   LegendaryDamage: 50
   LegendaryFireRate: 0.75
   LegendaryRange: 6.5
+  CommonToUnCommonCost: 500
+  UnCommonToRareCost: 1000
+  RareToEpicCost: 2000
+  EpicToLegendaryCost: 2500

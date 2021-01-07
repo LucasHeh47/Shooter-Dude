@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
+    public static PlayerMovement Instance;
+
     public float MovementSpeed = 10;
 
     void Start()
     {
-        
+        Instance = this; 
     }
 
     void FixedUpdate()

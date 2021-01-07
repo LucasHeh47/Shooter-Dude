@@ -5,8 +5,6 @@ using UnityEngine;
 public class GunManager : MonoBehaviour
 {
 
-    public static GunManager Instance;
-
     public Color NoColor;
     public Color CommonColor;
     public Color UnCommonColor;
@@ -21,6 +19,9 @@ public class GunManager : MonoBehaviour
     public Gun Remington;
     public Gun M16;
 
+    public Gun[] AllGuns;
+
+    public static GunManager Instance;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,19 @@ public class GunManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public Gun GetGunByBulletImage(Sprite sprite)
+    {
+        for(int i = 0; i < AllGuns.Length; i++)
+        {
+            if(AllGuns[i].ProjectileImage == sprite)
+            {
+                return AllGuns[i];
+            }
+        }
+        Debug.Log("Null GetGunByBulletImage method at GunManager.cs");
+        return null;
     }
 
     public enum RarityTypes { Common, UnCommon, Rare, Epic, Legendary };
