@@ -18,6 +18,11 @@ public class EnemyMovement : MonoBehaviour
     void FixedUpdate()
     {
         target = PlayerMovement.Instance.transform;
+
+        float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle-90));
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 500 * Time.deltaTime);
+
         if (Vector3.Distance(target.position, transform.position) > 0.9)
         {
             transform.position += (target.position - transform.position).normalized * enemy.MovementSpeed * Time.fixedDeltaTime;

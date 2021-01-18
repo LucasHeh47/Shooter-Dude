@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Zombie
   m_EditorClassIdentifier: 
   EnemyImage: {fileID: 0}
+  MoneyDrop: 75
   EnemyName: Zombie
   MovementSpeed: 6
   Damage: 30
   AttackRate: 2
-  MaxHealth: 1111.2004
+  MaxHealth: 181.89894
   DefaultMaxHealth: 10
-  HealthMultiplier: 1.4
+  HealthMultiplier: 1.25

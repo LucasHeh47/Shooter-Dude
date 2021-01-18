@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Remington
   m_EditorClassIdentifier: 
   Price: 1250
+  RestockPrice: 4500
+  ShootSound: {fileID: 8300000, guid: cc0e7a81891a4f949a885331ea699baa, type: 3}
   GunImage: {fileID: 21300000, guid: 06596bbe7c1a0b3418c8b50918a2a658, type: 3}
   GunImageInvView: {fileID: 21300000, guid: 8db2c16258054384095840748fbb96c4, type: 3}
   ProjectileImage: {fileID: 21300000, guid: 328ce7723275c754a87ee920822e7b5a, type: 3}
@@ -20,10 +22,11 @@ MonoBehaviour:
   DefaultGun: 0
   BulletSpeed: 35
   ReloadTime: 1.5
-  ClipSize: 2
-  AmmoInClip: 2
-  Ammo: 14
-  CurrentAmmo: 14
+  ClipSize: 6
+  AmmoInClip: 0
+  Ammo: 36
+  CurrentAmmo: 0
+  Pierces: 1
   Rarity: 4
   CommonDamage: 50
   CommonFireRate: 2
@@ -40,7 +43,7 @@ MonoBehaviour:
   LegendaryDamage: 120
   LegendaryFireRate: 1.45
   LegendaryRange: 0.6
-  CommonToUnCommonCost: 1250
-  UnCommonToRareCost: 1650
-  RareToEpicCost: 2250
-  EpicToLegendaryCost: 3500
+  CommonToUnCommonCost: 1750
+  UnCommonToRareCost: 2500
+  RareToEpicCost: 4250
+  EpicToLegendaryCost: 7500

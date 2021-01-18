@@ -22,6 +22,13 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI SniperUpgradePrice;
     public TextMeshProUGUI PistolUpgradePrice;
 
+    public TextMeshProUGUI UZIRestockPrice;
+    public TextMeshProUGUI M16RestockPrice;
+    public TextMeshProUGUI AK47RestockPrice;
+    public TextMeshProUGUI RemingtonRestockPrice;
+    public TextMeshProUGUI SniperRestockPrice;
+    public TextMeshProUGUI PistolRestockPrice;
+
     public GunManager manager;
     public PlayerCurrency currency;
 
@@ -31,6 +38,7 @@ public class ShopManager : MonoBehaviour
     public GameObject UpgradesTab;
     public GameObject ArmorTab;
     public GameObject BoostsTab;
+    public GameObject AmmoTab;
 
     public TextMeshProUGUI ReloadSpeedPriceText;
     public TextMeshProUGUI MovementSpeedPriceText;
@@ -42,7 +50,7 @@ public class ShopManager : MonoBehaviour
 
     public TextMeshProUGUI RepairTextPrice;
 
-    public enum ShopTabs { Guns = 0, Upgrades = 1, Armor = 2, Boosts = 3 }
+    public enum ShopTabs { Guns = 0, Upgrades = 1, Armor = 2, Boosts = 3, Ammo = 4}
 
     void Start()
     {
@@ -65,6 +73,8 @@ public class ShopManager : MonoBehaviour
         SniperUpgradePrice.SetText("$" + PlayerGun.Instance.GetUpgradeCost(manager.Sniper).ToString());
         PistolUpgradePrice.SetText("$" + PlayerGun.Instance.GetUpgradeCost(manager.Pistol).ToString());
 
+        UpdateRestockPrices();
+
         Instance = this;
     }
 
@@ -73,21 +83,41 @@ public class ShopManager : MonoBehaviour
         RepairTextPrice.SetText("$" + (((int)PlayerHealth.Instance.armorBar.maxValue - (int)PlayerHealth.Instance.armorBar.value) * 20).ToString());
     }
 
+    public void UpdateRestockPrices()
+    {
+        UZIRestockPrice.SetText("$" + manager.UZI.RestockPrice);
+        M16RestockPrice.SetText("$" + manager.M16.RestockPrice);
+        AK47RestockPrice.SetText("$" + manager.AK47.RestockPrice);
+        RemingtonRestockPrice.SetText("$" + manager.Remington.RestockPrice);
+        SniperRestockPrice.SetText("$" + manager.Sniper.RestockPrice);
+        PistolRestockPrice.SetText("$" + manager.Pistol.RestockPrice);
+    }
+
+    public void PurchaseRestock(Gun gun)
+    {
+        if(currency.money >= gun.RestockPrice)
+        {
+            currency.money -= gun.RestockPrice;
+            PlayerGun.Instance.ReloadGun(gun);
+            currency.CurrencyText.SetText("$" + currency.money.ToString());
+        }
+    }
+
     public void PurchaseBoost(int boost)
     {
-        if(boost == Boosts.ReloadSpeed.GetHashCode() && currency.money >= ReloadSpeedPrice)
+        if(boost == Boosts.ReloadSpeed.GetHashCode() && currency.money >= ReloadSpeedPrice && !PlayerBoosts.Instance.ReloadSpeed)
         {
             currency.money -= ReloadSpeedPrice;
             PlayerBoosts.Instance.ActivateReloadSpeed();
             currency.CurrencyText.SetText("$" + currency.money.ToString());
         }
-        if (boost == Boosts.MovementSpeed.GetHashCode() && currency.money >= MovementSpeedPrice)
+        if (boost == Boosts.MovementSpeed.GetHashCode() && currency.money >= MovementSpeedPrice && !PlayerBoosts.Instance.MovementSpeed)
         {
             currency.money -= MovementSpeedPrice;
             PlayerBoosts.Instance.ActivateMovementSpeed();
             currency.CurrencyText.SetText("$" + currency.money.ToString());
         }
-        if (boost == Boosts.IncreaseHealth.GetHashCode() && currency.money >= IncreaseHealthPrice)
+        if (boost == Boosts.IncreaseHealth.GetHashCode() && currency.money >= IncreaseHealthPrice && !PlayerBoosts.Instance.IncreaseHealth)
         {
             currency.money -= IncreaseHealthPrice;
             PlayerBoosts.Instance.ActivateIncreaseHealth();
@@ -174,6 +204,10 @@ public class ShopManager : MonoBehaviour
             currency.money -= PlayerGun.Instance.GetUpgradeCost(gun);
             currency.CurrencyText.SetText("$" + currency.money.ToString());
             PlayerGun.Instance.UpgradeGunRarity(gun);
+            if(gun.Rarity == GunManager.RarityTypes.Legendary && GlobalManager.Instance.CurrentChallenge.Name == "Legend")
+            {
+                GlobalManager.Instance.finishedChallenge = true;
+            }
             UpdateUpgradeText();
         }
     }
@@ -186,6 +220,7 @@ public class ShopManager : MonoBehaviour
             ArmorTab.SetActive(false);
             BoostsTab.SetActive(false);
             UpgradesTab.SetActive(true);
+            AmmoTab.SetActive(false);
         }
         if (ShopTabs.Guns.GetHashCode() == tab)
         {
@@ -193,6 +228,7 @@ public class ShopManager : MonoBehaviour
             ArmorTab.SetActive(false);
             BoostsTab.SetActive(false);
             UpgradesTab.SetActive(false);
+            AmmoTab.SetActive(false);
         }
         if (ShopTabs.Armor.GetHashCode() == tab)
         {
@@ -200,6 +236,7 @@ public class ShopManager : MonoBehaviour
             ArmorTab.SetActive(true);
             BoostsTab.SetActive(false);
             UpgradesTab.SetActive(false);
+            AmmoTab.SetActive(false);
         }
         if (ShopTabs.Boosts.GetHashCode() == tab)
         {
@@ -207,6 +244,15 @@ public class ShopManager : MonoBehaviour
             ArmorTab.SetActive(false);
             BoostsTab.SetActive(true);
             UpgradesTab.SetActive(false);
+            AmmoTab.SetActive(false);
+        }
+        if(ShopTabs.Ammo.GetHashCode() == tab)
+        {
+            GunsTab.SetActive(false);
+            ArmorTab.SetActive(false);
+            BoostsTab.SetActive(false);
+            UpgradesTab.SetActive(false);
+            AmmoTab.SetActive(true);
         }
     }
     

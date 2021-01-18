@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: AK-47
   m_EditorClassIdentifier: 
   Price: 750
+  RestockPrice: 4500
+  ShootSound: {fileID: 8300000, guid: 53146b9c542725b46a182adadfb006d5, type: 3}
   GunImage: {fileID: 21300000, guid: 8dec629c8b8c83d4d8b5b514c53924d4, type: 3}
   GunImageInvView: {fileID: 21300000, guid: 002d7484c4a40e0469088ce68be268ab, type: 3}
   ProjectileImage: {fileID: 21300000, guid: 25de789c09c64b348a1b6c5f1f3aeecb, type: 3}
@@ -21,26 +23,27 @@ MonoBehaviour:
   BulletSpeed: 20
   ReloadTime: 2
   ClipSize: 30
-  AmmoInClip: 13
+  AmmoInClip: 0
   Ammo: 210
-  CurrentAmmo: 210
+  CurrentAmmo: 0
+  Pierces: 0
   Rarity: 4
-  CommonDamage: 30
+  CommonDamage: 20
   CommonFireRate: 0.6
   CommonRange: 5
-  UnCommonDamage: 42.5
+  UnCommonDamage: 32.5
   UnCommonFireRate: 0.5
   UnCommonRange: 5.5
-  RareDamage: 55
+  RareDamage: 45
   RareFireRate: 0.45
   RareRange: 6
-  EpicDamage: 67.5
+  EpicDamage: 57.5
   EpicFireRate: 0.4
   EpicRange: 6.5
-  LegendaryDamage: 75
+  LegendaryDamage: 65
   LegendaryFireRate: 0.35
   LegendaryRange: 7
   CommonToUnCommonCost: 1000
-  UnCommonToRareCost: 1800
-  RareToEpicCost: 2500
-  EpicToLegendaryCost: 3250
+  UnCommonToRareCost: 2500
+  RareToEpicCost: 3250
+  EpicToLegendaryCost: 5000

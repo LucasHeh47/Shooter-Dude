@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: M16
   m_EditorClassIdentifier: 
   Price: 700
+  RestockPrice: 4000
+  ShootSound: {fileID: 8300000, guid: 32d0f45445d6bc947af6add0b160c2c9, type: 3}
   GunImage: {fileID: 21300000, guid: a11dad10bb1d1ee4c9bb4d3d9c7de730, type: 3}
   GunImageInvView: {fileID: 21300000, guid: 2a6901ad6143a164b8452327157c1ebc, type: 3}
   ProjectileImage: {fileID: 21300000, guid: 950f79fbcc861d5408f54bd74bd8eb14, type: 3}
@@ -21,26 +23,27 @@ MonoBehaviour:
   BulletSpeed: 20
   ReloadTime: 2
   ClipSize: 30
-  AmmoInClip: 13
+  AmmoInClip: 30
   Ammo: 210
-  CurrentAmmo: 0
-  Rarity: 4
-  CommonDamage: 25
+  CurrentAmmo: 210
+  Pierces: 0
+  Rarity: 0
+  CommonDamage: 15
   CommonFireRate: 0.575
   CommonRange: 5
-  UnCommonDamage: 37.5
+  UnCommonDamage: 27.5
   UnCommonFireRate: 0.485
   UnCommonRange: 5.5
-  RareDamage: 50
+  RareDamage: 40
   RareFireRate: 0.395
   RareRange: 6
-  EpicDamage: 62.25
+  EpicDamage: 52.5
   EpicFireRate: 0.3
   EpicRange: 6.5
-  LegendaryDamage: 75
+  LegendaryDamage: 60
   LegendaryFireRate: 0.25
   LegendaryRange: 7
-  CommonToUnCommonCost: 1500
-  UnCommonToRareCost: 1800
-  RareToEpicCost: 2500
-  EpicToLegendaryCost: 3250
+  CommonToUnCommonCost: 1000
+  UnCommonToRareCost: 2500
+  RareToEpicCost: 3250
+  EpicToLegendaryCost: 5000

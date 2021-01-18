@@ -13,18 +13,21 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   Price: 1500
+  RestockPrice: 6000
+  ShootSound: {fileID: 8300000, guid: 67976b41ba9b8ed40ab77e9b9dcc5a6f, type: 3}
   GunImage: {fileID: 21300000, guid: c8cd3877279d4b047893b7619161c809, type: 3}
   GunImageInvView: {fileID: 21300000, guid: 9e05bc35b08465d46b4352726ad18e83, type: 3}
   ProjectileImage: {fileID: 21300000, guid: 217c442f8d89f9d4da3601edfb5e3402, type: 3}
   GunName: Sniper
   DefaultGun: 0
-  BulletSpeed: 75
+  BulletSpeed: 40
   ReloadTime: 3
   ClipSize: 1
-  AmmoInClip: 0
-  Ammo: 7
-  CurrentAmmo: 0
-  Rarity: 4
+  AmmoInClip: 1
+  Ammo: 15
+  CurrentAmmo: 4
+  Pierces: 1
+  Rarity: 3
   CommonDamage: 60
   CommonFireRate: 2
   CommonRange: 7.5
@@ -40,7 +43,7 @@ MonoBehaviour:
   LegendaryDamage: 135
   LegendaryFireRate: 2
   LegendaryRange: 8.3
-  CommonToUnCommonCost: 1500
-  UnCommonToRareCost: 2000
-  RareToEpicCost: 3000
-  EpicToLegendaryCost: 4500
+  CommonToUnCommonCost: 2500
+  UnCommonToRareCost: 3250
+  RareToEpicCost: 5000
+  EpicToLegendaryCost: 8000

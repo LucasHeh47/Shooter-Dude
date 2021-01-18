@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBarObj.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 0.75f, transform.position.z));
+        healthBarObj.transform.position = CameraFollowPlayer.Instance.gameObject.GetComponent<Camera>().WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + 0.75f, transform.position.z));
     }
 
     void TakeDamage(float dmg)
@@ -43,9 +43,16 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        int random = Random.Range(0, 100);
+        if (random == 69)
+        {
+            PowerUpManager.Instance.SpawnRandomPowerUp(transform.position);
+        }
         Destroy(gameObject);
         EnemyManager.Instance.EnemysOnMap--;
-        PlayerCurrency.Instance.money += 100;
+        EnemyManager.Instance.enemysLeft--;
+        EnemyManager.Instance.Kills++;
+        PlayerCurrency.Instance.CollectMoney(enemy.MoneyDrop);
         PlayerCurrency.Instance.CurrencyText.SetText("$" + PlayerCurrency.Instance.money.ToString());
     }
 
@@ -58,8 +65,13 @@ public class EnemyHealth : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Bullet"))
         {
-            Destroy(col.gameObject);
-            TakeDamage(PlayerGun.Instance.GetDamage(GunManager.Instance.GetGunByBulletImage(col.gameObject.GetComponent<SpriteRenderer>().sprite)));
+            if(col.gameObject.GetComponent<Bullet>().Active) TakeDamage(PlayerGun.Instance.GetDamage(GunManager.Instance.GetGunByBulletImage(col.gameObject.GetComponent<SpriteRenderer>().sprite)));
+
+            if (!GunManager.Instance.GetGunByBulletImage(col.gameObject.GetComponent<SpriteRenderer>().sprite).Pierces)
+            {
+                col.gameObject.GetComponent<Bullet>().Active = false;
+                Destroy(col.gameObject);
+            }
         }
     }
 

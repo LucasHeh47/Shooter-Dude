@@ -32,4 +32,13 @@ public class PlayerCurrency : MonoBehaviour
         CurrencyText.SetText("$" + money.ToString());
     }
 
+    public IEnumerator DoubleCashPowerUp()
+    {
+        multiplier = 2.0f;
+        Debug.Log("Double cash start");
+        yield return new WaitForSeconds(20);
+        Debug.Log("Double cash end");
+        multiplier = 1.0f;
+    }
+
 }

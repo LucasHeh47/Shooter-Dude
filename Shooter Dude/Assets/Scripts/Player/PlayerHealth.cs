@@ -14,11 +14,13 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth;
     public float maxArmor;
 
-    private float healthRegenRate = 5;
+    private float healthRegenRate = 10;
 
     private float regenDelay = 1;
 
     private float regenedHealth;
+
+    public int enemysKilled;
 
     private float lastDmgTime;
 
@@ -30,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
         slider.maxValue = maxHealth;
         slider.value = maxHealth;
+        enemysKilled = 0;
 
         armorBar.maxValue = maxArmor;
     }
@@ -40,6 +43,12 @@ public class PlayerHealth : MonoBehaviour
         int flooredRegendedHealth = Mathf.FloorToInt(regenedHealth);
         regenedHealth -= flooredRegendedHealth;
         Heal(flooredRegendedHealth);
+    }
+
+    public void MedicPowerUp()
+    {
+        slider.value = slider.maxValue;
+        armorBar.value = armorBar.maxValue;
     }
 
     void Update()
@@ -83,6 +92,10 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         isDead = true;
+        GlobalManager.Instance.RoundMadeTo = EnemyManager.Instance.Round;
+        GlobalManager.Instance.expToAdd = (enemysKilled * 10) + (EnemyManager.Instance.Round * 20);
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        GlobalManager.Instance.LoadScene("Waves Game Over");
     }
 
     public void Heal(int amt)

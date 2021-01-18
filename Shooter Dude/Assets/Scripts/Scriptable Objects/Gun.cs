@@ -8,6 +8,8 @@ public class Gun : ScriptableObject
 {
 
     public float Price;
+    public float RestockPrice;
+    public AudioClip ShootSound;
     public Sprite GunImage;
     public Sprite GunImageInvView;
     public Sprite ProjectileImage;
@@ -19,6 +21,7 @@ public class Gun : ScriptableObject
     public int AmmoInClip;
     public int Ammo;
     public int CurrentAmmo;
+    public bool Pierces;
 
     public GunManager.RarityTypes Rarity;
 

@@ -8,6 +8,7 @@ public class Enemy : ScriptableObject
 {
 
     public Sprite EnemyImage;
+    public int MoneyDrop;
     public string EnemyName;
     public float MovementSpeed;
     public float Damage;

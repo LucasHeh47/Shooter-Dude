@@ -10,6 +10,8 @@ public class PlayerGun : MonoBehaviour
     public static PlayerGun Instance;
     public GunManager manager;
 
+    private AudioSource audio;
+
     public Gun DefaultGun;
 
     public Gun[] Equipped;
@@ -54,7 +56,7 @@ public class PlayerGun : MonoBehaviour
         ChangeInv();
         delay = GetFireRate(WeaponHolding);
         ReloadTime = WeaponHolding.ReloadTime;
-
+        audio = GetComponent<AudioSource>();
         ReloadAllGunsCompletely();
         AmmoText.SetText(WeaponHolding.AmmoInClip.ToString() + "/" + WeaponHolding.CurrentAmmo.ToString());
     }
@@ -117,7 +119,7 @@ public class PlayerGun : MonoBehaviour
         }
     }
 
-    void ReloadGun(Gun gun)
+    public void ReloadGun(Gun gun)
     {
         gun.CurrentAmmo = gun.Ammo;
         gun.AmmoInClip = gun.ClipSize;
@@ -133,7 +135,7 @@ public class PlayerGun : MonoBehaviour
         AmmoText.SetText(WeaponHolding.AmmoInClip.ToString() + "/" + WeaponHolding.CurrentAmmo.ToString());
     }
 
-    void ReloadAllGunsCompletely()
+    public void ReloadAllGunsCompletely()
     {
         for (int i = 0; i < manager.AllGuns.Length; i++)
         {
@@ -209,7 +211,9 @@ public class PlayerGun : MonoBehaviour
         GameObject SpawnedBullet = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
         SpawnedBullet.GetComponent<SpriteRenderer>().sprite = WeaponHolding.ProjectileImage;
         Rigidbody2D rb = SpawnedBullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(SpawnedBullet.transform.right * WeaponHolding.BulletSpeed, ForceMode2D.Impulse);
+        audio.clip = WeaponHolding.ShootSound;
+        audio.Play();
+        rb.velocity = SpawnedBullet.transform.right * WeaponHolding.BulletSpeed;
         Destroy(SpawnedBullet, GetRange(WeaponHolding));
     }
 

@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Waves.unity
+    guid: 37927fcc7ad4a4b4a98543bdc8e94001
+  - enabled: 1
+    path: Assets/Scenes/WavesMap-Graveyard.unity
+    guid: 0a7be356783f22c4786314daa009bc9f
+  - enabled: 1
+    path: Assets/Scenes/Waves Game Over.unity
+    guid: 01cafc54713a0de4cb0a6edb14e94029
   m_configObjects: {}
