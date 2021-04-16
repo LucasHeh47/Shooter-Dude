@@ -13,6 +13,10 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemy;
 
     public TextMeshProUGUI roundText;
+    public TextMeshProUGUI nextRoundCountDown;
+    public TextMeshProUGUI enemiesLeftText;
+
+    public GameObject crit1Particles;
 
     public bool startingRound = false;
 
@@ -27,6 +31,8 @@ public class EnemyManager : MonoBehaviour
     public int Round = 0;
 
     public Enemy[] AllEnemys;
+
+    private float remainingTime = 0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -89,9 +95,20 @@ public class EnemyManager : MonoBehaviour
             enemysThisRound = (int) (enemysThisRound * enemysPerRoundMultiplier);
         }
         enemysLeft = enemysThisRound;
+        enemiesLeftText.SetText(enemysLeft.ToString());
         if(Round < 15) enemy.GetComponent<EnemyHealth>().IncreaseHealth();
-        yield return new WaitForSeconds(10);
+
+        float duration = 10f;
+
+        remainingTime = duration;
+        while (remainingTime > 0f) {
+            remainingTime -= Time.deltaTime;
+            nextRoundCountDown.SetText("Round Starting in: " + ((int)remainingTime).ToString() + " Seconds");
+            yield return null;
+        }
+
         StartCoroutine(StartRound());
         startingRound = false;
+        nextRoundCountDown.SetText(" ");
     }
 }

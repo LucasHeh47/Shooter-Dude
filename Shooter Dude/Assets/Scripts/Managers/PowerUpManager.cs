@@ -11,6 +11,7 @@ public class PowerUpManager : MonoBehaviour
     public PowerUp DoubleCash;
     public PowerUp Medic;
     public PowerUp MaxAmmo;
+    public PowerUp SelfRevive;
 
     public GameObject PowerUpObj;
 
@@ -43,6 +44,20 @@ public class PowerUpManager : MonoBehaviour
         Debug.Log(powerUp.Name);
         GameObject obj = Instantiate(PowerUpObj, pos, transform.rotation);
         obj.GetComponent<PowerUpSpawn>().power = powerUp;
+    }
+
+    public void StartDoubleCash()
+    {
+        StartCoroutine(DoubleCashPowerUp());
+    }
+
+    public IEnumerator DoubleCashPowerUp()
+    {
+        PlayerCurrency.Instance.multiplier = 2.0f;
+        Debug.Log("Double cash start");
+        yield return new WaitForSeconds(20);
+        Debug.Log("Double cash end");
+        PlayerCurrency.Instance.multiplier = 1.0f;
     }
 
 }

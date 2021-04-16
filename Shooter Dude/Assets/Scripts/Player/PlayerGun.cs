@@ -349,6 +349,31 @@ public class PlayerGun : MonoBehaviour
         return 0;
     }
 
+    public int GetCritChance(Gun gun)
+    {
+        if (gun.Rarity == GunManager.RarityTypes.Common)
+        {
+            return gun.CommonCritChance;
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.UnCommon)
+        {
+            return gun.UnCommonCritChance;
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.Rare)
+        {
+            return gun.RareCritChance;
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.Epic)
+        {
+            return gun.EpicCritChance;
+        }
+        else if (gun.Rarity == GunManager.RarityTypes.Legendary)
+        {
+            return gun.LegendaryCritChance;
+        }
+        return 0;
+    }
+
     public void UpgradeGunRarity(Gun gun)
     {
         if (gun.Rarity == GunManager.RarityTypes.Common)

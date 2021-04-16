@@ -19,7 +19,11 @@ public class PowerUpCollision : MonoBehaviour
             }
             if (GetComponent<PowerUpSpawn>().power.Name == "Double Cash")
             {
-                StartCoroutine(PlayerCurrency.Instance.DoubleCashPowerUp());
+                PowerUpManager.Instance.StartDoubleCash();
+            }
+            if (GetComponent<PowerUpSpawn>().power.Name == "Self Revive")
+            {
+                PlayerHealth.Instance.IncrementSelfRevive();
             }
         }
     }

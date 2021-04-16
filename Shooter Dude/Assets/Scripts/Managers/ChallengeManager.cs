@@ -27,6 +27,8 @@ public class ChallengeManager : MonoBehaviour
         goalText.SetText(CurrentChallenge.Objective);
         rewardText.SetText(CurrentChallenge.ExpReward + " Experience");
         GlobalManager.Instance.CurrentChallenge = CurrentChallenge;
+
+        GlobalManager.Instance.SaveToPlayerData();
     }
 
     // Update is called once per frame

@@ -54,6 +54,8 @@ public class ExpManager : MonoBehaviour
         expBar.maxValue = GlobalManager.Instance.PlayerExpToLevelUp;
         expBar.value = GlobalManager.Instance.PlayerExp;
         lvlTest.SetText(GlobalManager.Instance.PlayerLevel.ToString());
+
+        GlobalManager.Instance.SaveToPlayerData();
     }
 
     public void UpdateUI()
@@ -87,6 +89,7 @@ public class ExpManager : MonoBehaviour
         }
         expToAdd = 0;
         GlobalManager.Instance.expToAdd = 0;
+        UpdateUI();
         Debug.Log("Updated exp... Current exp and level:" + PlayerExp + " " + PlayerLevel);
     }
 

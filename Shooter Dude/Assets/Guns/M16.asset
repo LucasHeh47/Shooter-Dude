@@ -28,18 +28,23 @@ MonoBehaviour:
   CurrentAmmo: 210
   Pierces: 0
   Rarity: 0
+  CommonCritChance: 25
   CommonDamage: 15
   CommonFireRate: 0.575
   CommonRange: 5
+  UnCommonCritChance: 23
   UnCommonDamage: 27.5
   UnCommonFireRate: 0.485
   UnCommonRange: 5.5
+  RareCritChance: 21
   RareDamage: 40
   RareFireRate: 0.395
   RareRange: 6
+  EpicCritChance: 19
   EpicDamage: 52.5
   EpicFireRate: 0.3
   EpicRange: 6.5
+  LegendaryCritChance: 17
   LegendaryDamage: 60
   LegendaryFireRate: 0.25
   LegendaryRange: 7

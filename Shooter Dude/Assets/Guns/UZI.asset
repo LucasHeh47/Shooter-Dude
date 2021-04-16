@@ -25,21 +25,26 @@ MonoBehaviour:
   ClipSize: 32
   AmmoInClip: 32
   Ammo: 224
-  CurrentAmmo: 162
+  CurrentAmmo: 224
   Pierces: 0
   Rarity: 0
+  CommonCritChance: 25
   CommonDamage: 5
   CommonFireRate: 0.2
   CommonRange: 3
+  UnCommonCritChance: 23
   UnCommonDamage: 10
   UnCommonFireRate: 0.175
   UnCommonRange: 3.2
+  RareCritChance: 21
   RareDamage: 15
   RareFireRate: 0.15
   RareRange: 3.4
+  EpicCritChance: 19
   EpicDamage: 20
   EpicFireRate: 0.125
   EpicRange: 3.6
+  LegendaryCritChance: 17
   LegendaryDamage: 25
   LegendaryFireRate: 0.1
   LegendaryRange: 4

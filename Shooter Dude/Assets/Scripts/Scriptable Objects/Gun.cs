@@ -26,26 +26,31 @@ public class Gun : ScriptableObject
     public GunManager.RarityTypes Rarity;
 
     // COMMON
+    public int CommonCritChance;
     public float CommonDamage;
     public float CommonFireRate;
     public float CommonRange;
 
     // UNCOMMON
+    public int UnCommonCritChance;
     public float UnCommonDamage;
     public float UnCommonFireRate;
     public float UnCommonRange;
 
     // RARE
+    public int RareCritChance;
     public float RareDamage;
     public float RareFireRate;
     public float RareRange;
 
     // EPIC
+    public int EpicCritChance;
     public float EpicDamage;
     public float EpicFireRate;
     public float EpicRange;
 
     // LEGENDARY
+    public int LegendaryCritChance;
     public float LegendaryDamage;
     public float LegendaryFireRate;
     public float LegendaryRange;

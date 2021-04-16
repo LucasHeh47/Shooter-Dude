@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class GlobalManager : MonoBehaviour
 {
 
     public static GlobalManager Instance;
     public AudioManager audioManager;
+
+    PlayerData playerData;
 
     // VARIABLES
     public int PlayerLevel;
@@ -32,6 +36,11 @@ public class GlobalManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if(SceneManager.GetActiveScene().name == "Menu")
+        {
+            Load();
+        }
     }
 
     void Start()
@@ -44,13 +53,55 @@ public class GlobalManager : MonoBehaviour
         
     }
 
+    public void Load()
+    {
+        Debug.Log("Open");
+        playerData = PlayerDataManager.LoadData();
+
+        if (playerData == null)
+        {
+            playerData = new PlayerData();
+        }
+        else
+        {
+            LoadFromPlayerData();
+        }
+        Debug.Log("End of Open");
+    }
+
+    public void OnApplicationQuit()
+    {
+        Debug.Log("Close");
+        PlayerDataManager.SaveData(playerData);
+        Debug.Log("End of Close");
+    }
+
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
     }
 
+    public void SaveToPlayerData()
+    {
+        playerData.CurrentChallenge = CurrentChallenge;
+        playerData.PlayerTotalExp = PlayerTotalExp;
+        playerData.PlayerExp = PlayerExp;
+        playerData.PlayerLevel = PlayerLevel;
+        playerData.PlayerExpToLevelUp = PlayerExpToLevelUp;
+    }
+
+    public void LoadFromPlayerData()
+    {
+        CurrentChallenge = playerData.CurrentChallenge;
+        PlayerTotalExp = playerData.PlayerTotalExp;
+        PlayerExp = playerData.PlayerExp;
+        PlayerExpToLevelUp = playerData.PlayerExpToLevelUp;
+        PlayerLevel = playerData.PlayerLevel;
+    }
+
 }
 
+[System.Serializable]
 public class PlayerData
 {
 
@@ -59,5 +110,14 @@ public class PlayerData
     public int PlayerExp;
     public int PlayerTotalExp;
     public Challenge CurrentChallenge;
+
+    /*public PlayerData()
+    {
+        PlayerLevel = GlobalManager.Instance.PlayerLevel;
+        PlayerExpToLevelUp = GlobalManager.Instance.PlayerExpToLevelUp;
+        PlayerExp = GlobalManager.Instance.PlayerExp;
+        PlayerTotalExp = GlobalManager.Instance.PlayerTotalExp;
+        CurrentChallenge = GlobalManager.Instance.CurrentChallenge;
+    }*/
 
 }

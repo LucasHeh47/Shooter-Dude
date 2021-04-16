@@ -21,25 +21,30 @@ MonoBehaviour:
   GunName: Remington
   DefaultGun: 0
   BulletSpeed: 35
-  ReloadTime: 1.5
+  ReloadTime: 3
   ClipSize: 6
-  AmmoInClip: 0
+  AmmoInClip: 6
   Ammo: 36
-  CurrentAmmo: 0
+  CurrentAmmo: 36
   Pierces: 1
-  Rarity: 4
+  Rarity: 0
+  CommonCritChance: 21
   CommonDamage: 50
   CommonFireRate: 2
   CommonRange: 0.3
+  UnCommonCritChance: 19
   UnCommonDamage: 65
   UnCommonFireRate: 1.85
   UnCommonRange: 0.4
+  RareCritChance: 17
   RareDamage: 85
   RareFireRate: 1.7
   RareRange: 0.5
+  EpicCritChance: 15
   EpicDamage: 100
   EpicFireRate: 1.55
   EpicRange: 0.55
+  LegendaryCritChance: 13
   LegendaryDamage: 120
   LegendaryFireRate: 1.45
   LegendaryRange: 0.6

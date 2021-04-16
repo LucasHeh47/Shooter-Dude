@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class PlayerHealth : MonoBehaviour
     public float maxArmor;
 
     private float healthRegenRate = 10;
+    public TextMeshProUGUI selfReviveText;
+
+    public int SelfRevives = 0;
 
     private float regenDelay = 1;
 
@@ -35,6 +39,12 @@ public class PlayerHealth : MonoBehaviour
         enemysKilled = 0;
 
         armorBar.maxValue = maxArmor;
+    }
+
+    public void IncrementSelfRevive()
+    {
+        SelfRevives++;
+        selfReviveText.SetText(SelfRevives.ToString());
     }
 
     public void RegenHealth()
@@ -91,6 +101,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
+        if(SelfRevives > 0)
+        {
+            SelfRevives--;
+            selfReviveText.SetText(SelfRevives.ToString());
+            slider.value = slider.maxValue;
+            return;
+        }
         isDead = true;
         GlobalManager.Instance.RoundMadeTo = EnemyManager.Instance.Round;
         GlobalManager.Instance.expToAdd = (enemysKilled * 10) + (EnemyManager.Instance.Round * 20);
